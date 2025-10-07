@@ -14,3 +14,4 @@
 - The 7 steps will be implemented as sequential operations on pandas DataFrames.
 - Each step will correspond to a user story from `spec.md`.
 - DataFrame filtering, merging, and concatenation will be the primary methods used.
+- Always test code after change the code.
