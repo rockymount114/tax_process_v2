@@ -11,5 +11,7 @@ wheels/
 
 *.txt
 *.csv
+.gemini/
+.specify/
+.env
 
-tax_process_v2/
