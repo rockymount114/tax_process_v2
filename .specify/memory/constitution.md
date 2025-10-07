@@ -5,7 +5,6 @@
 
 ### [PRINCIPLE_1_NAME]
 <!-- Example: I. Library-First -->
-- **DO NOT** duplicate records
 [PRINCIPLE_1_DESCRIPTION]
 <!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
 
