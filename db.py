@@ -49,19 +49,24 @@ def read_fwf_file(file_path: str, colspecs: list, columns: list, dtypes: dict) -
     if df is None:
         raise Exception(f"Could not read file {file_path} with any of the attempted encodings")
     
-    # Post-processing similar to TAX.py
-    for col in df.columns:
-        if col in dtypes and dtypes[col] == 'object' or dtypes[col] == 'string':
-            df[col] = df[col].astype(str).str.strip()
+    # # Post-processing similar to TAX.py
+    # for col in df.columns:
+    #     if col in dtypes and dtypes[col] == 'object' or dtypes[col] == 'string':
+    #         df[col] = df[col].astype(str).str.strip()
     
-    # Handle numeric columns gracefully
-    numeric_cols = [col for col, dtype in dtypes.items() if dtype in ['int64', 'float64']]
-    for col in numeric_cols:
-        df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(dtypes[col])
+    # # Handle numeric columns gracefully
+    # numeric_cols = [col for col, dtype in dtypes.items() if dtype in ['int64', 'float64']]
+    # for col in numeric_cols:
+    #     df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(dtypes[col])
     
-    # handle parcel number issue for citybill    
+    # handle parcel number issue for bill    
+    if 'ZIPC' in df.columns:
+        df['ZIPC'] = pd.to_numeric(df['ZIPC'], errors='coerce').fillna(0).astype(int).astype(str).str.zfill(5)
+        
     if 'PARCEL' in df.columns:
         df['PARCEL'] = df['PARCEL'].apply(lambda x: "{:.0f}".format(x) if pd.notna(x) and isinstance(x, (int, float)) else str(x) if pd.notna(x) else '')
+    if 'LOC_STREET#' in df.columns:
+        df['LOC_STREET#'] = df['LOC_STREET#'].apply(lambda x: "{:.0f}".format(x) if pd.notna(x) and isinstance(x, (int, float)) else str(x) if pd.notna(x) else '')
     return df
 
 def get_munis_parcels():

@@ -1,50 +1,32 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: 0.0.0 -> 1.0.0
+- Added sections:
+  - Core Principles
+  - Governance
+- Modified principles:
+  - Added: I. Data Consolidation
+  - Added: II. Mandatory Code Testing
+- Removed sections:
+  - Removed 3 of 5 principle placeholders.
+  - Removed SECTION_2 and SECTION_3 placeholders.
+- Templates requiring updates:
+  - No templates found in .specify/templates/ to update.
+- Follow-up TODOs:
+  - TODO(RATIFICATION_DATE): Set the initial ratification date.
+-->
+# Nash Tax Bills Processing Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Data Consolidation
+All data cleaning and merging operations must be clearly defined and executed to ensure data integrity. For the `nash_df` DataFrame, records with a `DOGS` quantity but no `REAL_VALUE` or `PERSONAL_VALUE` must be merged with the corresponding `REAL` or `PERSONAL` record based on `CUSTOMER_NO`. The goal is to consolidate the `DOGS` quantity into a single, comprehensive record for each customer. if the record has already merged do not merge them into another record as may have multiple records for the same customer. 
+After merge the record, then this DOG record must be remove from the dataset.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
-
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
-
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
-
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
-
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### II. Mandatory Code Testing
+All code must be accompanied by tests. Any new feature or bug fix must include a test case that verifies the correctness of the implementation.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+Amendments to this constitution require a proposal, review, and approval process. All code contributions must adhere to the principles outlined herein.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): Set the initial ratification date. | **Last Amended**: 2025-10-07
