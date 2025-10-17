@@ -1,11 +1,18 @@
 import pandas as pd
+import sqlite3
+import os
 from db import read_fwf_file
 from config import (NASH_COLSPECS, NASH_COLUMNS, NASH_DTYPES)
+
+
+conn = sqlite3.connect('testdb.sqlite')
 
 # Step 1: Load data and filter DOGS-only records with no property value
 nash_df = read_fwf_file('NASH.TXT', NASH_COLSPECS, NASH_COLUMNS, NASH_DTYPES)
 print(f"original nash has:  {len(nash_df)}")
 # Assume nash_df is loaded
+
+nash_df.to_sql("nash_orginal", if_exists="replace", index=False, con=conn)
 
 # 1. Find DOGS-only records (REAL_VALUE == 0 & PERSONAL_VALUE == 0 & DOGS != 0)
 dogs_only_mask = (
@@ -35,4 +42,6 @@ for customer_no in dogs_only_df['CUSTOMER_NO'].unique():
 
 # Save final
 nash_df.to_csv('final_nash2025.csv', index=False)
+
+nash_df.to_sql("nash_final", if_exists="replace", index=False, con=conn)
 print(f"final has: {len(nash_df)}")
